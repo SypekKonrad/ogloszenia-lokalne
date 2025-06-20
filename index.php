@@ -10,8 +10,13 @@
 <body>
         <!-- navbar -->
     <nav>
-        <a href="register.php" >Sign Up</a>
-        <a href="login.php">Sign In</a>
+    <div class="nav-left">
+        <a href="index.php" class="logo">Ogłoszenia Lokalne</a>
+    </div>
+    <div class="nav-right">
+        <a href="register.php">Zarejestruj Się</a>
+        <a href="login.php">Zaloguj Się</a>
+    </div>
     </nav>
 
     <main>
