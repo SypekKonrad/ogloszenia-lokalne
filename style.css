@@ -1,0 +1,70 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+nav {
+  background-color: #333;
+  width: 100%;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a.wybrany {
+  background-color: #555;
+  text-decoration: underline;
+}
+
+main {
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+}
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #aaa;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  thead {
+    background-color: #ddd;
+  }
+  
+  /* nieparzyste wiersze */
+  tbody > tr:nth-child(odd) {
+    background-color: #d9fdd3;
+  }
+  
+  #formularz {
+    margin-top: 30px;
+  }
+  
+  label {
+    display: inline-block;
+    width: 120px;
+    margin-top: 10px;
+  }
+  input, button {
+    margin-top: 10px;
+  }
