@@ -1,5 +1,4 @@
 <?php
-// Jeśli już jesteś zalogowany, przekieruj np. na konto
 session_start();
 if (isset($_SESSION["login"])) {
     header("Location: account.php");
@@ -30,13 +29,13 @@ if (isset($_SESSION["login"])) {
     <h2 style="margin-top: 0;">Zaloguj się</h2>
 
     <form method="post" action="login_process.php" id="formularz">
-      <label for="login">Login:</label>
-      <input type="text" name="login" id="login" required /><br />
+    <label for="username">Login:</label>
+    <input type="text" name="username" id="username" required /><br />
 
-      <label for="password">Hasło:</label>
-      <input type="password" name="password" id="password" required /><br />
+    <label for="password">Hasło:</label>
+    <input type="password" name="password" id="password" required /><br />
 
-      <button type="submit" class="btn-primary">Zaloguj się</button>
+    <button type="submit" class="btn-primary">Zaloguj się</button>
     </form>
 
     <p style="margin-top: 20px;">

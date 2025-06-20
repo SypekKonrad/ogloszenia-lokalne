@@ -97,7 +97,8 @@ main:hover {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
 }
 
-button.btn-primary {
+button.btn-primary,
+a.btn-primary {
   background: linear-gradient(90deg, #ff7e5f, #feb47b);
   color: white;
   border: none;
@@ -111,7 +112,8 @@ button.btn-primary {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button.btn-primary:hover {
+button.btn-primary:hover,
+a.btn-primary:hover {
   background-color: #feb47b;
   transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(255, 126, 95, 0.5);
