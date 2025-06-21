@@ -21,13 +21,17 @@
     </nav>
 
     <main>
-
-        <!-- jakies tresci -->
-        <div>
-            <!-- <p><a href="logout.php">Wyloguj się</a></p> -->
-            <a href="logout.php" class="btn-primary">Wyloguj się</a>
-        </div>
-
+        <?php if (isset($_SESSION['user'])): ?>
+            <div class="account-bar">
+                <p>
+                    Zalogowano jako: <strong><?= htmlspecialchars($_SESSION['user']['username']) ?></strong>
+                    (ID: <?= (int)$_SESSION['user']['id'] ?>)
+                </p>
+                <a href="logout.php" class="btn-primary">Wyloguj się</a>
+            </div>
+        <?php else: ?>
+            <p>Nie jesteś zalogowany.</p>
+        <?php endif; ?>
     </main>
 </body>
 </html>

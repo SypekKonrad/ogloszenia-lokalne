@@ -13,11 +13,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $hashed = md5($password); 
 
         $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$hashed'";
-        $result = $conn->query($sql);
-
+       $result = $conn->query($sql);
         if ($result && $result->num_rows === 1) {
+            $user = $result->fetch_assoc(); 
             $_SESSION["login"] = $username;
-            header("Location: account.php");
+            $_SESSION["user"] = [
+                'id' => $user['id'],
+                'username' => $user['username'],
+        ];
+
             header("Location: " . $redirect);
             exit;
         } else {
