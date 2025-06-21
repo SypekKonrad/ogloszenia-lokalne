@@ -23,7 +23,15 @@
 
         <!-- jakies tresci -->
         <div>
-            <p>jakies tresci landing page</p>
+            <p>searchbar</p>
+        </div>
+
+        <div>
+            <p>kategorie</p>
+        </div>
+
+        <div>
+            <p>wszystkie ogl</p>
         </div>
 
     </main>

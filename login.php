@@ -1,7 +1,8 @@
 <?php
 session_start();
 if (isset($_SESSION["login"])) {
-    header("Location: account.php");
+    $redirect = $_GET['redirect'] ?? 'account.php';
+    header("Location: $redirect");
     exit;
 }
 ?>
@@ -29,6 +30,8 @@ if (isset($_SESSION["login"])) {
     <h2 style="margin-top: 0;">Zaloguj się</h2>
 
     <form method="post" action="login_process.php" id="formularz">
+    <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($_GET['redirect'] ?? 'account.php'); ?>">
+
     <label for="username">Login:</label>
     <input type="text" name="username" id="username" required /><br />
 

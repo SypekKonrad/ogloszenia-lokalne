@@ -8,7 +8,6 @@ error_reporting(E_ALL);
 
 $userLogin = $_SESSION['login'] ?? null;
 
-// Pobierz user_id na podstawie loginu
 $user_id = null;
 if ($userLogin) {
     $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
@@ -33,9 +32,10 @@ $message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');
+    $location = trim($_POST['location'] ?? '');
     $category_id = (int)($_POST['category'] ?? 0);
 
-    if (!$title || !$description || !$category_id) {
+   if (!$title || !$description || !$category_id || !$location) {
         $message = "Wypełnij wszystkie pola.";
     } elseif (!$user_id) {
         $message = "Nie znaleziono użytkownika, zaloguj się ponownie.";
@@ -53,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (!$message) {
-            $stmt = $conn->prepare("INSERT INTO ads (title, description, image, user_id, category_id) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssii", $title, $description, $imagePath, $user_id, $category_id);
+            $stmt = $conn->prepare("INSERT INTO ads (title, description, image, user_id, category_id, location) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssiss", $title, $description, $imagePath, $user_id, $category_id, $location);
             if ($stmt->execute()) {
                 $message = "Ogłoszenie zostało dodane!";
             } else {
@@ -102,6 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="<?php echo $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
             <?php endforeach; ?>
         </select><br><br>
+
+        <label for="location">Lokalizacja:</label>
+        <input type="text" name="location" id="location" required><br><br>
 
         <label for="image">Zdjęcie:</label><br>
         <input type="file" name="image" id="image" accept="image/*" class="btn-primary"><br><br>
