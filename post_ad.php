@@ -56,7 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $conn->prepare("INSERT INTO ads (title, description, image, user_id, category_id, location) VALUES (?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("sssiss", $title, $description, $imagePath, $user_id, $category_id, $location);
             if ($stmt->execute()) {
-                $message = "Ogłoszenie zostało dodane!";
+                // $message = "Ogłoszenie zostało dodane!";
+                $new_ad_id = $stmt->insert_id; // Get the ID of the newly created ad
+                $stmt->close();
+                header("Location: ad_view.php?id=" . $new_ad_id); // Redirect to the ad
+                exit();
             } else {
                 $message = "Błąd podczas dodawania ogłoszenia.";
             }

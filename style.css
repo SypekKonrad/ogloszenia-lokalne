@@ -116,7 +116,6 @@ label {
 
 main {
   background-color: white;
-  /* max-width: 900px; */
   max-width: 70%;
   margin: 30px auto;
   padding: 30px 40px;
@@ -152,6 +151,123 @@ a.btn-primary:hover {
   background-color: #feb47b;
   transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(255, 126, 95, 0.5);
+}
+
+.ad-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(255, 126, 95, 0.1);
+}
+
+.ad-header {
+  border-bottom: 2px solid #ff7e5f;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ad-title {
+  color: #333;
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.ad-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.ad-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.ad-meta span::before {
+  content: "•";
+  color: #ff7e5f;
+  margin-right: 0.3rem;
+}
+
+.ad-image-container {
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 100%; 
+}
+
+.ad-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.ad-image:hover {
+  transform: scale(1.02);
+}
+
+.ad-description {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #444;
+  margin: 2rem 0;
+  white-space: pre-line;
+}
+
+.ad-contact {
+  background: linear-gradient(135deg, #fff9f8, #f0f4ff);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  border-left: 4px solid #ff7e5f;
+}
+
+.ad-contact h3 {
+  color: #ff7e5f;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.ad-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ad-contact-info p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ad-contact-info p::before {
+  content: "→";
+  color: #ff7e5f;
+}
+
+@media (max-width: 768px) {
+  .ad-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .ad-title {
+    font-size: 1.5rem;
+  }
+  
+  .ad-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
   
   table {
