@@ -6,6 +6,44 @@ $result = $conn->query("SELECT id, name FROM categories ORDER BY name ASC");
 if ($result) {
     $categories = $result->fetch_all(MYSQLI_ASSOC);
 }
+
+$ads = [];
+$search_query = $_GET['q'] ?? '';
+$search_location = $_GET['location'] ?? '';
+
+$sql = "SELECT ads.*, categories.name AS category_name 
+        FROM ads 
+        JOIN categories ON ads.category_id = categories.id 
+        WHERE 1";
+
+$params = [];
+$types = '';
+
+if ($search_query !== '') {
+    $sql .= " AND (ads.title LIKE ? OR ads.description LIKE ?)";
+    $params[] = "%$search_query%";
+    $params[] = "%$search_query%";
+    $types .= 'ss';
+}
+
+if ($search_location !== '') {
+    $sql .= " AND ads.location LIKE ?";
+    $params[] = "%$search_location%";
+    $types .= 's';
+}
+
+$sql .= " ORDER BY ads.id DESC LIMIT 12";
+$stmt = $conn->prepare($sql);
+
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
+}
+
+$stmt->execute();
+$result = $stmt->get_result();
+$ads = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -50,9 +88,24 @@ if ($result) {
         <?php endforeach; ?>
         </section>
 
-        <div>
-            <p>wszystkie ogl</p>
-        </div>
+        <section class="ads-grid">
+            <?php foreach ($ads as $ad): ?>
+                <a href="ad_view.php?id=<?= $ad['id'] ?>&return=index.php" class="ad-tile">
+                    <div class="ad-thumbnail">
+                        <?php if (!empty($ad['image'])): ?>
+                            <img src="<?= htmlspecialchars($ad['image']) ?>" alt="<?= htmlspecialchars($ad['title']) ?>">
+                        <?php else: ?>
+                            <div class="no-image">Brak zdjęcia</div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="ad-info">
+                        <h3><?= htmlspecialchars($ad['title']) ?></h3>
+                        <p><?= htmlspecialchars($ad['category_name']) ?></p>
+                        <p><?= htmlspecialchars($ad['location']) ?></p>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </section>
 
     </main>
 </body>

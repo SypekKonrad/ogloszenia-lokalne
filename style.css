@@ -552,3 +552,60 @@ a.btn-primary:hover {
 .category-button:hover {
   background: linear-gradient(90deg, #ff956f, #fec57f);
 }
+
+
+.ads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 2rem;
+}
+
+.ad-tile {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.ad-tile:hover {
+  transform: scale(1.02);
+}
+
+.ad-thumbnail img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.no-image {
+  width: 100%;
+  height: 180px;
+  background: #f0f0f0;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.ad-info {
+  padding: 1rem;
+}
+
+.ad-info h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.ad-info p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
