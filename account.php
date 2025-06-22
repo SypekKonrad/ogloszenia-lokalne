@@ -9,7 +9,13 @@ if (!isset($_SESSION['user'])) {
 
 $user_id = $_SESSION['user']['id'];
 
-$stmt = $conn->prepare("SELECT * FROM ads WHERE user_id = ? ORDER BY id DESC");
+$stmt = $conn->prepare("
+    SELECT ads.*, categories.name AS category_name 
+    FROM ads 
+    LEFT JOIN categories ON ads.category_id = categories.id 
+    WHERE ads.user_id = ? 
+    ORDER BY ads.id DESC
+");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -51,6 +57,12 @@ $stmt->close();
         <!-- <?php else: ?>
             <p>Nie jesteś zalogowany.</p>
         <?php endif; ?> -->
+
+             <div>
+                <p>todo:</p>
+                <p>w acc.php zakładki moje ogłoszenia i ulubione</P>
+
+            </div>
         
            <div class="ads-list">
                 <?php foreach ($user_ads as $ad): ?>
@@ -67,7 +79,10 @@ $stmt->close();
                             <p class="ad-meta">
                                 <span class="location"><?= htmlspecialchars($ad['location']) ?></span>
                             </p>
-                            <p class="description"><?= htmlspecialchars(substr($ad['description'], 0, 120)) ?></p>
+                           <p class="ad-meta">
+                                <span class="category"><?= htmlspecialchars($ad['category_name'] ?? 'Brak kategorii') ?></span>
+                            </p>
+                            <!-- <p class="description"><?= htmlspecialchars(substr($ad['description'], 0, 120)) ?></p> -->
                         </div>
                         <div class="ad-list-actions">
                             <a href="ad_view.php?id=<?= $ad['id'] ?>" class="btn-action">Podgląd</a>
