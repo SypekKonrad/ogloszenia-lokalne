@@ -1,3 +1,13 @@
+<?php
+require_once 'db.php';
+
+$categories = [];
+$result = $conn->query("SELECT id, name FROM categories ORDER BY name ASC");
+if ($result) {
+    $categories = $result->fetch_all(MYSQLI_ASSOC);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,14 +31,24 @@
 
     <main>
 
-        <!-- jakies tresci -->
-        <div>
-            <p>searchbar</p>
-        </div>
+       
 
-        <div>
-            <p>kategorie</p>
-        </div>
+        <!-- jakies tresci -->
+        <section class="searchbar">
+        <form action="index.php" method="GET" class="searchbar-form">
+            <input type="text" name="q" placeholder="Szukaj" class="search-input">
+            <input type="text" name="location" placeholder="Lokalizacja" class="search-input">
+            <button type="submit" class="btn-primary search-button">Szukaj</button>
+        </form>
+        </section>
+
+        <section class="category-buttons">
+        <?php foreach ($categories as $category): ?>
+            <a href="category.php?id=<?= $category['id'] ?>" class="btn-primary category-button">
+            <?= htmlspecialchars($category['name']) ?>
+            </a>
+        <?php endforeach; ?>
+        </section>
 
         <div>
             <p>wszystkie ogl</p>

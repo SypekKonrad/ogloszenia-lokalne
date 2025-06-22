@@ -2,6 +2,8 @@
 require_once 'db.php';
 require_once 'session.php';
 
+$returnUrl = $_GET['return'] ?? 'account.php';
+
 $ad_id = (int)($_GET['id'] ?? 0);
 $ad = [];
 $user = [];
@@ -47,7 +49,7 @@ if (empty($ad)) {
     <main class="ad-container">
         <h1><?= htmlspecialchars($ad['title']) ?></h1>
 
-        <a href="account.php" class="btn-primary">Powrót</a>
+        <a href="<?= htmlspecialchars($returnUrl) ?>" class="btn-primary">Powrót</a>
         
         <div class="ad-meta">
             <span class="category">Kategoria: <?= htmlspecialchars($ad['category_name']) ?></span>

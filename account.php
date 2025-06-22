@@ -85,7 +85,7 @@ $stmt->close();
                             <!-- <p class="description"><?= htmlspecialchars(substr($ad['description'], 0, 120)) ?></p> -->
                         </div>
                         <div class="ad-list-actions">
-                            <a href="ad_view.php?id=<?= $ad['id'] ?>" class="btn-action">Podgląd</a>
+                            <a href="ad_view.php?id=<?= $ad['id'] ?>&return=account.php" class="btn-action">Podgląd</a>
                             <a href="edit_ad.php?id=<?= $ad['id'] ?>" class="btn-action btn-edit">Edytuj</a>
                             <a href="delete_ad.php?id=<?= $ad['id'] ?>" class="btn-action btn-delete" onclick="return confirm('Na pewno chcesz usunąć to ogłoszenie?');">Usuń</a>
                         </div>
