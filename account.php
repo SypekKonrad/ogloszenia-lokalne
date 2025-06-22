@@ -1,4 +1,23 @@
-<?php require_once 'session.php'; ?>
+<?php
+require_once 'session.php'; 
+require_once 'db.php';
+
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$user_id = $_SESSION['user']['id'];
+
+$stmt = $conn->prepare("SELECT * FROM ads WHERE user_id = ? ORDER BY id DESC");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user_ads = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +48,38 @@
                 </p>
                 <a href="logout.php" class="btn-primary">Wyloguj się</a>
             </div>
-        <?php else: ?>
+        <!-- <?php else: ?>
             <p>Nie jesteś zalogowany.</p>
-        <?php endif; ?>
+        <?php endif; ?> -->
+        
+           <div class="ads-list">
+                <?php foreach ($user_ads as $ad): ?>
+                    <div class="ad-list-item">
+                        <div class="ad-list-thumbnail">
+                            <?php if (!empty($ad['image'])): ?>
+                                <img src="<?= htmlspecialchars($ad['image']) ?>" alt="<?= htmlspecialchars($ad['title']) ?>">
+                            <?php else: ?>
+                                <div class="no-image">Brak zdjęcia</div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="ad-list-details">
+                            <h3><?= htmlspecialchars($ad['title']) ?></h3>
+                            <p class="ad-meta">
+                                <span class="location"><?= htmlspecialchars($ad['location']) ?></span>
+                            </p>
+                            <p class="description"><?= htmlspecialchars(substr($ad['description'], 0, 120)) ?></p>
+                        </div>
+                        <div class="ad-list-actions">
+                            <a href="ad_view.php?id=<?= $ad['id'] ?>" class="btn-action">Podgląd</a>
+                            <a href="edit_ad.php?id=<?= $ad['id'] ?>" class="btn-action btn-edit">Edytuj</a>
+                            <a href="delete_ad.php?id=<?= $ad['id'] ?>" class="btn-action btn-delete" onclick="return confirm('Na pewno chcesz usunąć to ogłoszenie?');">Usuń</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+
+
     </main>
 </body>
 </html>
