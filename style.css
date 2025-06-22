@@ -144,6 +144,7 @@ a.btn-primary {
   box-shadow: 0 4px 10px rgba(255, 126, 95, 0.3);
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
 }
 
 button.btn-primary:hover,
@@ -152,6 +153,8 @@ a.btn-primary:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(255, 126, 95, 0.5);
 }
+
+
 
 .ad-container {
   max-width: 800px;
