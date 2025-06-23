@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["login"])) {
-    $redirect = basename($_SERVER["PHP_SELF"]);
-    header("Location: login.php?redirect=$redirect");
-    exit;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
+
 ?>

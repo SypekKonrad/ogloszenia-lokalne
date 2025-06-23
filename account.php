@@ -2,9 +2,9 @@
 require_once 'session.php'; 
 require_once 'db.php';
 
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['login'])) {
     header('Location: login.php');
-    exit;
+    exit();
 }
 
 $user_id = $_SESSION['user']['id'];

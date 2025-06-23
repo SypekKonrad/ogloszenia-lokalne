@@ -2,9 +2,9 @@
 require_once 'session.php';
 require_once 'db.php';
 
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['login'])) {
     header('Location: login.php');
-    exit;
+    exit();
 }
 
 $user_id = $_SESSION['user']['id'];
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form method="post" enctype="multipart/form-data">
-            <label for="title">Tytuł</label>
+            <label for="title">Edytuj ogłoszenie</label>
             <input type="text" id="title" name="title" value="<?= htmlspecialchars($ad['title']) ?>" required>
 
             <label for="description">Opis</label>

@@ -68,13 +68,16 @@ if (empty($ad)) {
             <p><?= nl2br(htmlspecialchars($ad['description'])) ?></p>
         </div>
 
-        <?php if (isset($_SESSION['login'])): ?>
-            <div class="ad-contact">
-                <h3>Kontakt:</h3>
-                <p>Ogłoszeniodawca: <?= htmlspecialchars($ad['username']) ?></p>
+       <div class="ad-contact">
+            <h3>Kontakt:</h3>
+            <p>Ogłoszeniodawca: <?= htmlspecialchars($ad['username']) ?></p>
+
+            <?php if (isset($_SESSION['login'])): ?>
                 <p>Email: <?= htmlspecialchars($ad['email']) ?></p>
-            </div>
-        <?php endif; ?>
+            <?php else: ?>
+                <p><a href="login.php">Zaloguj się, aby zobaczyć email</a></p>
+            <?php endif; ?>
+        </div>
     </main>
 </body>
 </html>
