@@ -51,6 +51,7 @@ if (empty($ad)) {
 
         <a href="<?= htmlspecialchars($returnUrl) ?>" class="btn-primary">Powrót</a>
         
+        
         <div class="ad-meta">
             <span class="category">Kategoria: <?= htmlspecialchars($ad['category_name']) ?></span>
             <span class="location">Lokalizacja: <?= htmlspecialchars($ad['location']) ?></span>

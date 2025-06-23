@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once 'db.php';
 
 $categories = [];
@@ -7,7 +11,6 @@ if ($result) {
     $categories = $result->fetch_all(MYSQLI_ASSOC);
 }
 
-$ads = [];
 $search_query = $_GET['q'] ?? '';
 $search_location = $_GET['location'] ?? '';
 
@@ -33,6 +36,7 @@ if ($search_location !== '') {
 }
 
 $sql .= " ORDER BY ads.id DESC LIMIT 12";
+
 $stmt = $conn->prepare($sql);
 
 if (!empty($params)) {
@@ -42,9 +46,10 @@ if (!empty($params)) {
 $stmt->execute();
 $result = $stmt->get_result();
 $ads = $result->fetch_all(MYSQLI_ASSOC);
-$stmt->close();
 
+$stmt->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
