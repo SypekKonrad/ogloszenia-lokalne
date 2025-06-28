@@ -58,11 +58,7 @@ $stmt->close();
             <p>Nie jesteś zalogowany.</p>
         <?php endif; ?> -->
 
-             <div>
-                <p>todo:</p>
-                <p>w acc.php zakładki moje ogłoszenia i ulubione</P>
-
-            </div>
+            <h2>Moje ogłoszenia</h2>
         
            <div class="ads-list">
                 <?php foreach ($user_ads as $ad): ?>
