@@ -21,3 +21,10 @@ A simple OLX clone web application built using PHP and MySQL. This project allow
    ```bash
    cd /path/to/xampp/htdocs
    git clone https://github.com/SypekKonrad/ogloszenia-lokalne.git
+   ```
+4. **Set up the database**
+   Go to phpmyadmin and create new databased called ogloszenia
+   Select ogloszenia from left sidebar and go to import section
+   Choose file located at: /ogloszenia-lokalne/ogloszenia.sql
+
+   
