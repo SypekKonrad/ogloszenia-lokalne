@@ -11,6 +11,7 @@ Thumbs.db
 *.session
 
 /database_backups/
+*.sql
 
 /vendor/
 
